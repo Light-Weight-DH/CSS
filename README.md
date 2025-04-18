@@ -82,6 +82,7 @@ CSS : Cluster-based Comparison System for Color Scheme Similarity
  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FczuM0I%2FbtsL4NTxrZD%2FbNyQw0tklwnkB8DxBOPGy0%2Fimg.png)
 🖼️ 유사도 계산 결과 예시
  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FSm4K5%2FbtsL3SBuf1W%2FnFWYwlEK3wqbqzD8thWxU1%2Fimg.png)
+
 <br>
 
 ## 🧑‍💻 실행 방법 (How to Run)
@@ -99,4 +100,16 @@ CSS : Cluster-based Comparison System for Color Scheme Similarity
 - 개체별 색상 팔레트 확인  
 - 전경 / 배경 / 개체 각 기준별 유사 이미지 확인
 
+<br>
+
+> 💡 구체적인 계산 방식과 배경 개념이 궁금하다면 아래 블로그 글들을 참고해 주세요:
+
+- [🔗 #1 기존 방식 (Feature Extraction 기반)](https://rokart.tistory.com/entry/%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%9C%A0%EC%82%AC%EB%8F%84-%EB%B9%84%EA%B5%90-1-Feature-extraction)  
+  → CNN 기반 이미지 임베딩과 벡터 비교 방식 설명
+
+- [🔗 #2 참고연구 정리 (Clustering 기반 접근)](https://rokart.tistory.com/entry/%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%9C%A0%EC%82%AC%EB%8F%84-%EB%B9%84%EA%B5%90-2-Color-Scheme)  
+  → 색상 팔레트 추출 및 CHD 기반 유사도 비교 방식 정리
+
+- [🔗 #3 본 시스템 개발 과정 정리](https://rokart.tistory.com/entry/%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%9C%A0%EC%82%AC%EB%8F%84-%EB%B9%84%EA%B5%90-3-Color-Scheme)  
+  → 가중치 적용, 개체 분리, 최종 유사도 계산 방식까지 전체 구현 흐름 소개
 
