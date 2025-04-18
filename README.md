@@ -19,15 +19,17 @@ CSS : Cluster-based Comparison System for Color Scheme Similarity
 
 두 논문은 각각 색상 팔레트 추출 방식과 팔레트 간 유사도 계산 방식을 제시하고 있으며, 해당 내용을 기반으로 본 시스템의 주요 알고리즘이 구성되었습니다.
 
-*Color Scheme Extraction Based on Image Segmentation and Saliency Map / [링크](#)*  
+*Color Scheme Extraction Based on Image Segmentation and Saliency Map / [링크](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE10536766)*  
 - Deep ConvNet, PSPNet 등 CNN 기반 분할 모델을 사용하여 이미지에서 전경과 배경을 분리
 - Saliency Map을 활용해 중요 영역을 판단, K-means로 전경/배경의 색상 팔레트를 추출
 
  ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbjkV4O%2FbtsLOtHMGXI%2FajjoeEKhTzIxwMcuLWrLSk%2Fimg.png)
   
-*Color Palettes Comparison Using Cluster-based Hausdorff Distance / [링크](#)*
+*Color Palettes Comparison Using Cluster-based Hausdorff Distance / [링크](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE10618312)*
 - 기존 색상 팔레트 유사도 비교 방식의 한계를 보완하고자 클러스터 기반 Hausdorff Distance(CHD) 제안
 - 색상 팔레트를 클러스터링한 후 클러스터 간의 거리 기반으로 구조적인 유사도 측정
+
+ ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F22jlU%2FbtsLMHuhOmK%2FO53vYo38R8YzCrtjnwJNK0%2Fimg.png)
 
 <br>
 
@@ -48,7 +50,10 @@ CSS : Cluster-based Comparison System for Color Scheme Similarity
 - 색상 간 비교는 Cluster-based Hausdorff Distance(CHD)를 기반으로 수행됩니다.
 
 **💡 개선 포인트**  
-→ 단순히 색상만 비교하는 것이 아니라, **이미지에서의 비중(면적)**을 반영하여 보다 정확한 비교가 가능해졌습니다.
+→ 단순히 색상만 비교하는 것이 아니라, **이미지에서의 비중(면적)** 을 반영하여 보다 정확한 비교가 가능해졌습니다.
+
+ 🖼️  전배경 유사도 비교 예시 (좌측(선택 이미지), 우측(유사 이미지))
+ ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FLb187%2FbtsL4Pw1q8h%2Fxgx6UUlPkQmnvBKEtp2IDK%2Fimg.png)
 
 ### 2️⃣ 개체 유사도 (Object-Level Matching)
 
@@ -63,13 +68,35 @@ CSS : Cluster-based Comparison System for Color Scheme Similarity
 - 개체 수가 다를 경우 **Hungarian Algorithm**을 통해 최적의 매칭을 찾습니다.
 
 **💡 개선 포인트**  
-→ 전경 내 개체별 색상을 분리하여 반영함으로써, **전체 분위기를 해치지 않으면서도 세부 유사도 비교 가능**
+→ 전경 내 개체별 색상을 분리하여 반영함으로써, **전체 분위기를 해치지 않으면서도 세부 유사도 반영**
+
+🖼️ 개체별 색상 팔레트 추출 예시
+ ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F340O8%2FbtsL2mXWMuu%2FwEEo6vlGEo0ccxeZQ72GlK%2Fimg.png)
 
 ### 3️⃣ 최종 유사도 산출  
 각 이미지의 전경 / 개체 / 배경에서 계산된 유사도는  
 해당 영역이 이미지 전체에서 **차지하는 면적 비율**에 따라 최종 유사도 점수에 반영됩니다.
 이 방식을 통해 이미지 내 색상의 **비율, 공간적 의미, 객체 단위의 분포까지 종합적으로 고려한 유사도 측정이 가능**합니다.
 
+🖼️ 데이터 전처리 예시 (전경, 배경, 개체별 색상 비율)
+ ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FczuM0I%2FbtsL4NTxrZD%2FbNyQw0tklwnkB8DxBOPGy0%2Fimg.png)
+🖼️ 유사도 계산 결과 예시
+ ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FSm4K5%2FbtsL3SBuf1W%2FnFWYwlEK3wqbqzD8thWxU1%2Fimg.png)
 <br>
 
 ## 🧑‍💻 실행 방법 (How to Run)
+본 프로젝트는 색상별 가중치가 저장된 **전처리 데이터(csv)** 를 기반으로 실행됩니다.  
+전처리된 csv 파일과 이미지 데이터는 이미 포함되어 있습니다.
+
+### ▶️ 실행 순서
+1. **`images/`** 폴더에서 비교하고 싶은 **이미지 번호(ID)**를 확인합니다.  
+2. **`CSS.ipynb`** 실행 후 이미지 번호를 입력하면 'images/'폴더 내 유사 이미지가 출력됩니다.
+
+### 📘 추가 사항 
+**`CSS_process.ipynb`** 는 아래와 같은 분석 과정을 포함하고 있으니,  
+유사도 계산의 내부 과정을 자세히 확인하고 싶은 경우 활용하시면 됩니다:
+- 전경 / 배경 색상 팔레트 확인  
+- 개체별 색상 팔레트 확인  
+- 전경 / 배경 / 개체 각 기준별 유사 이미지 확인
+
+
