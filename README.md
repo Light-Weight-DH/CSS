@@ -21,7 +21,9 @@ CSS : Cluster-based Comparison System for Color Scheme Similarity
 
 *Color Scheme Extraction Based on Image Segmentation and Saliency Map / [링크](#)*  
 - Deep ConvNet, PSPNet 등 CNN 기반 분할 모델을 사용하여 이미지에서 전경과 배경을 분리
-- Saliency Map을 활용해 중요 영역을 판단하고, K-means 클러스터링으로 전경/배경의 색상 팔레트를 추출
+- Saliency Map을 활용해 중요 영역을 판단, K-means로 전경/배경의 색상 팔레트를 추출
+
+ ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbjkV4O%2FbtsLOtHMGXI%2FajjoeEKhTzIxwMcuLWrLSk%2Fimg.png)
   
 *Color Palettes Comparison Using Cluster-based Hausdorff Distance / [링크](#)*
 - 기존 색상 팔레트 유사도 비교 방식의 한계를 보완하고자 클러스터 기반 Hausdorff Distance(CHD) 제안
